@@ -1,0 +1,59 @@
+PROTOCOLO DE COMUNICACAO
+========================
+
+********************************************************************************
+
+                     PACOTES RECEBIDOS DO CLIENT
+
+********************************************************************************
+
+Pacote : RING
+Função : Executar o RING de um canal.
+Sintaxe: RING,CANAL,DURACAO
+Onde   :
+         CANAL = número do canal
+         DURACAO = tempo do ring (segundos)
+Exemplo:
+         $RING,0,1
+
+--------------------------------------------------------------------------------
+
+Pacote : TSTINPCM
+Função : Executar o teste de PCM Loopback de um canal.
+Sintaxe: TSTINPCM,CANAL
+Onde   :
+         CANAL = número do canal
+Exemplo:
+         $TSTINPCM,0
+
+
+********************************************************************************
+********************************************************************************
+
+                          PACOTES ENVIADOS AO CLIENT
+
+********************************************************************************
+********************************************************************************
+
+Pacote : RING
+Função : Resposta da execução do RING de um canal.
+Sintaxe: RING,CANAL,DURACAO,RESULT
+Onde   :
+         CANAL = número do canal
+         DURACAO = tempo do ring (segundos)
+         RESULT = resultado da operação (0=OK, outro valor indica erro)
+Exemplo:
+         $RING,0,1,0
+
+
+--------------------------------------------------------------------------------
+
+Pacote : TSTINPCM
+Função : Resposta da execução do teste de PCM Loopback de um canal.
+Sintaxe: TSTINPCM,CANAL,RESULT
+Onde   :
+         CANAL = número do canal
+         RESULT = resultado da operação (0=OK, outro valor indica erro)
+Exemplo:
+         $TSTINPCM,0,0
+

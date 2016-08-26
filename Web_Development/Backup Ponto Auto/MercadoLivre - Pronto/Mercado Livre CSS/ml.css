@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#page-container {
+	width: 580px;
+	margin: auto;
+	background-color:#E8E8E8;
+}
+
+#header {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/header.jpg);
+	width: 580px;
+	height:170px;
+    margin: auto;
+
+	
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+#propaganda {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/propaganda.jpg);
+	width : 580px;
+	height: 40px;
+}
+
+#loja {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/loja1.jpg);
+	width: 580px;
+	height:140px;
+
+
+}
+
+#aviso {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/aviso.jpg);
+	width:580px;
+    height:40px;
+}
+
+#foto {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/foto.jpg);
+	width:580px;
+	height:40px;
+}
+
+#menu {
+		background-color: #E8E8E8;
+	    float:left;
+	
+}
+
+#menuver {
+	background-color: #666;
+	float:left;
+	width:110px;
+	height:695px;
+	padding-top:2; 
+	padding:2;
+	text-align: left;
+	font: 11px Verdana, sans-serif;
+	border-top: 2px solid yellow; 
+	border-bottom: 2px solid yellow; 
+}
+#menuver li {
+list-style: none;
+margin: 0.5em 0.5em 0.5em 0.5em; 
+}
+#menuver li a {
+margin:0; 
+padding:0;
+text-decoration: blink;
+color: #F0F0F0;
+}
+#menuver li a:visited {
+color:  #FFF;
+}
+#menuver li a:hover { 
+background: #333;
+color: # FF0; 
+}
+#menuver li a:active { 
+background:  #333;
+color:  #333; 
+}
+
+
+#contfoto {
+	background-color: #E8E8E8;
+	height:750px;
+	width:580px;
+	vertical-align: top;
+	
+}
+
+#desc {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/desc.jpg);
+	height:40px;
+	width:580px;
+	margin:0;
+	
+}
+
+#marcas {
+	background-color: #F00;
+    float:left;
+/*	background-image:url(fotos/marcas.jpg);
+*/	width:110px;
+	height:540px;
+	}
+
+#contdesc {
+	background-color:#E8E8E8;
+	height:550px;
+	width:580px;
+	vertical-align: top;
+
+}
+
+
+#pagamento {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/pagto.jpg);
+	height:40px;
+	width:580px;
+}
+
+#pagcont {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/pagamento.jpg);
+	width:580px;
+	height:260px;
+}
+
+#envio {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/formaenvio.jpg);
+	height:40px;
+	width:580px;
+}
+
+#contenvio {
+	background-color:#E8E8E8;
+	height:90px;
+	width:580px;	
+}
+
+h1 {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 18px;
+	text-align:center;
+}
+
+#comocomprar {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/comocomprar.jpg);
+	height:40px;
+	width:580px;
+}
+
+#contcomprar {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/comprar.gif);	
+	height:380px;
+	width:580px;
+}
+
+#footer {
+	background-image:url(http://pontoauto4x4.tempsite.ws/ml_css/fotos/footer.gif);
+	height:60px;
+	width:580px;
+}
+
+

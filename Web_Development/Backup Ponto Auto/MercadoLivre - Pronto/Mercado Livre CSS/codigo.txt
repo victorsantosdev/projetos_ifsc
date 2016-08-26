@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="./ml.css" media="all" />
+</head>
+
+<body>
+<div id="page-container">
+
+	<div id="header">HEADER</div>
+  <div id="propaganda">PROPAGANDA</div>
+  <div id="loja">LOJA</div>
+  <div id="aviso">WARNING</div>
+  <div id="foto">FOTO</div>
+  <ul id="menu">
+	<font color="#FFFF00">Peças 4x4</font>
+<li>
+<a href="#" title="Motores 4x4">Motores</a>
+</li>
+<font color="#FFFF00">Som e Vídeo</font>
+<li>
+<a href="#" title="Toca-Fitas">Toca-Fitas</a>
+</li>
+<font color="#FFFF00">CD Players</font>
+
+<li>
+<a href="#" title="CD Players">CD Players</a>
+</li>
+<li>
+<a href="#" title="Disqueteiras e Acessórios">Disqueteiras e Acessórios</a>
+</li>
+<li>
+<a href="#" title="CD Players">CD Players</a>
+</li>
+<li>
+<a href="#" title="Construção de menus">CSS Menu</a>
+</li>
+<li>
+<a href="#" title="CSS para impressão">CSS Print</a>
+</li>
+<li>
+<a href="#" title="Importação de folhas de estilo">CSS @import</a>
+</li>
+<li>
+<a href="#" title="Fale conosco">Contato</a>
+</li>
+</ul>
+
+    <div id="contfoto">CONTEUDO_FOTO</div>
+  	<div id="desc">DESCRICAO</div>
+    <div id="marcas">MARCAS</div>
+ 	<div id="contdesc">CONTEUDO_DESCRICAO</div>
+	<div id="pagamento">PAGAMENTO</div>
+    <div id="pagcont">CONT_PAG</div>
+    <div id="envio">ENVIO</div>
+
+    
+</div>
+
+
+</body>
+</html>

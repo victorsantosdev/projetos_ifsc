@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/home/victor/workspace/optativaAndroid/.metadata/.plugins/org.eclipse.jdt.core
+3092445014.index
+887441630.index
+2563425663.index

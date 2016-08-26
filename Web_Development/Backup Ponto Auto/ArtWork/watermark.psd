@@ -1,0 +1,357 @@
+function [feat] = calculaCaracteristicas(   im,  imbwLabel,...
+                                            mag, theta,...
+                                            T,   bb,...
+                                            vetor, varargin)
+%CALCULACARACTERISTICAS - RETORNA UMA MATRIZ COM OS VALORES DE CADA CARACTERISTICA.
+%
+%[feat] = calculaCaracteristicas(   im, imbwLabel,...
+%                                   mag, theta,...
+%                                   rot, T,...
+%                               	bb,vetor);
+%
+%ENTRADA
+%========
+%
+%IM - IMAGEM EM RGB.
+%
+%IMBWLABEL - ROTULOS OBTIDOS ATRAVES DA FUNCAO LOCEDGEKLT
+%
+%MAG - IMAGEM DE MAGNITUDE OBTIDA POR MEIO DA FUNCAO LOCEDGEKLT.
+%
+%THETA - ANGULOS DOS PIXELS OBTIDOS POR MEIO DA FUNCAO LOCEDGEKLT.
+%
+%
+%T - LIMIAR OBTIDO POR MEIO DA FUNCAO LOCEDGEKLT.
+%
+%BB - MATRIZ DE BOUNDING BOXES OBTIDO POR LOCEDGEKLT.
+%
+%VETOR - VETOR QUE INDICA QUAIS CARACTERISTICAS DEVEM RETORNAR NA SAIDA
+%FEAT, O TAMANHO DA MATRIZ FEAT SERA NUM_DE_BB X NUM_DE_CARACTERISTICAS.
+%1 - MEDIA DA MAGNITUDE DO GRADIENTE/T
+%2 - VARIANCIA DA MAGNITUDE DO GRADIENTE
+%3 - SKEWNESS DA MAGNITUDE DO GRADIENTE
+%4 - KURTOSIS DA MAGNITUDE DO GRADIENTE
+%5 - MEDIA DO ANGULO DO GRADIENTE
+%6 - VARIANCIA DO ANGULO DO GRADIENTE
+%7 - SKEWNESS DA ANGULO DO GRADIENTE
+%8 - KURTOSIS DA ANGULO DO GRADIENTE 
+%9 - NUMERO DE PIXELS DA BORDA/AREA
+%10- NUMERO DE PIXELS DE BORDA/DIMENSAO
+%11- FEATURE WAVELET RGB
+%12- FEATURE WAVELET GRAY
+%13- FEATURE WAVELET ENERGY SEG. ORDEM
+%14- FEATURE WAVELET ENERGY TERC. ORDEM
+%15- MAXIMA VARIACAO DA DIRECAO DO GRAD.
+%16- LARGURA DO BB
+%17- ALTURA DO BB
+%18- AREA DO BB
+%19- LARGURA BB/LARGURA IMAGEM
+%20- ALTURA BB/ALTURA IMAGEM
+%21- AREA BB/AREA IMAGEM
+%22- FEATURE WAVELET ENERGY - MEDIA
+%
+%ex: vetor = [1 3 5 6 10];
+%
+%%ROT (varargin) - ROTULOS DOS COMPONENTES CONECTADOS QUE O USUARIO DESEJA CALCULAR
+%CARACTERISTICAS.
+%
+%'faixaReduzida' - caso e
+%
+%SAIDAS
+%=========
+%
+%FEAT - MATRIZ DE CARACTERISTICAS DE TAMANHO NUM_DE_BB X
+%NUM_DE_CARACTERISTICAS.
+%
+%
+%Obs: Caso nao deseje calcular 
+
+%Checando o numero de entradas e os tipos de entrada
+if nargin>8|| nargin<7
+    error('Numero de entradas invalida');
+elseif length(vetor)>22 || max(vetor)>22 || min(vetor)<1
+    error('O vetor de entrada possui dados invalidos');
+else
+    feat = zeros(size(bb,2),length(vetor));
+end
+
+%Flag indicando a existencia de rotulos.
+numEnt = nargin;
+flagFaixaReduzida = false;
+if numEnt == 8
+    rot = varargin{1};
+    flagRot = true;
+elseif numEnt == 9 && isempty(varargin{1}) && strcmpi(varargin{2},'faixaReduzida')
+    flagRot = false;
+    flagFaixaReduzida = true;
+elseif numEnt == 9 && ~isempty(varargin{1}) && strcmpi(varargin{2},'faixaReduzida')
+    rot = varargin{1};
+    flagRot = true;
+    flagFaixaReduzida = true;
+end
+
+for x = 1:length(vetor)
+
+    val = vetor(x);
+
+    switch val
+        case 1
+            if ~flagRot
+                [mediaMag] = featGradMagStatistic(imbwLabel, mag, 'media');
+            else
+                [mediaMag] = featGradMagStatistic(imbwLabel, mag, 'media',rot);
+            end
+            
+            %Calculando o valor do atributo;
+            aux1 = (mediaMag/T)';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux1>4;
+                aux1(ind) = 4;  %Valor superior
+            end
+            
+            feat(:,x) = aux1;
+            
+        case 2
+            if ~flagRot
+                [varMag] = featGradMagStatistic(imbwLabel, mag, 'variancia');
+            else
+                [varMag] = featGradMagStatistic(imbwLabel, mag, 'variancia',rot);
+            end
+            
+            aux2 = varMag';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            
+            if flagFaixaReduzida
+                ind = aux2 > 0.1;
+                aux2(ind) = 0.1;    %Valor superior
+            end
+            
+            feat(:,x) = aux2;
+            
+        case 3
+            if ~flagRot
+                [skewMag] = featGradMagStatistic(imbwLabel, mag, 'skew');
+            else
+                [skewMag] = featGradMagStatistic(imbwLabel, mag, 'skew',rot);
+            end
+            
+
+            aux3 = skewMag';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux3 > 3; %Valor superior
+                aux3(ind) = 3;
+                ind = aux3 < -6; %Valor inferior
+                aux3(ind) = -6;
+            end
+            
+            feat(:,x) = aux3;
+            
+        case 4
+            if ~flagRot
+                [kurtMag] = featGradMagStatistic(imbwLabel, mag, 'kurt');
+            else
+                [kurtMag] = featGradMagStatistic(imbwLabel, mag, 'kurt',rot);
+            end
+            
+            aux4 = kurtMag';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux4 > 15; %Valor superior
+                aux4(ind) = 15;
+            end
+            
+            feat(:,x) = aux4;
+            
+        case 5
+            if ~flagRot
+                [mediaAng] = featAngStatistic(imbwLabel, theta, 'media');
+            else
+                [mediaAng] = featAngStatistic(imbwLabel, theta, 'media',rot);
+            end
+            
+            aux5 = mediaAng';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux5 > 6; %Valor superior
+                aux5(ind) = 6;
+            end
+            
+            feat(:,x) = aux5;
+            
+        case 6
+            if ~flagRot
+                [varAng] = featAngStatistic(imbwLabel, theta, 'variancia');
+            else
+                [varAng] = featAngStatistic(imbwLabel, theta, 'variancia',rot);
+            end
+            
+            aux6 = varAng';
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux6 > 6; %Valor superior
+                aux6(ind) = 6;
+            end
+            
+            feat(:,x) = aux6;
+            
+        case 7
+            if ~flagRot
+                [skewAng] = featAngStatistic(imbwLabel, theta, 'skew');
+            else
+                [skewAng] = featAngStatistic(imbwLabel, theta, 'skew',rot);
+            end
+            
+            aux7 = skewAng';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux7 > 2; %Valor superior
+                aux7(ind) = 2;
+                ind = aux7 < -2;
+                aux7(ind) = -2;
+            end
+            
+            feat(:,x) = aux7;
+            
+        case 8
+            if ~flagRot
+                [kurtAng] = featAngStatistic(imbwLabel, theta, 'kurt');
+            else
+                [kurtAng] = featAngStatistic(imbwLabel, theta, 'kurt',rot);
+            end
+            
+            aux8 = kurtAng';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux8 > 4; %Valor superior
+                aux8(ind) = 4;
+            end
+            
+            feat(:,x) = aux8;
+            
+        case 9
+            if ~flagRot
+                pixContornoArea = featPixContornoArea(imbwLabel, bb);
+            else
+                pixContornoArea = featPixContornoArea(imbwLabel, bb, rot);
+            end
+            
+            feat(:,x) = pixContornoArea';
+            
+        case 10
+            if ~flagRot
+                pixContornoDim = featPixContornoDim(imbwLabel, bb);
+            else
+                pixContornoDim = featPixContornoDim(imbwLabel, bb, rot);
+            end
+            
+            aux10 = pixContornoDim';
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux10 > 10; %Valor superior
+                aux10(ind) = 10;
+            end
+            
+            feat(:,x) = aux10;
+            
+        case 11
+            featWRGB = featWaveRGB(im, bb);
+            feat(:,x) = featWRGB;
+            
+        case 12
+            featWGray = featWaveGray(im, bb);
+            feat(:,x) = featWGray;
+            
+        case 13
+            featWaveEnergy2 = featWaveEnergy(im, '2',bb);
+            
+            aux13 = featWaveEnergy2;
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux13 > 5; %Valor superior
+                aux13(ind) = 5;
+                feat(:,x) = aux13;
+            end
+            
+        case 14
+            featWaveEnergy3 = featWaveEnergy(im, '3',bb);
+            
+            aux14 = featWaveEnergy3;
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux14 > 100; %Valor superior
+                aux14(ind) = 100;
+            end
+            
+            feat(:,x) = aux14;
+        case 15
+            if ~flagRot
+                pix = regionprops(imbwLabel,'PixelIdxList');
+                featMaxGradDirecao = featMaxGradDir(pix,bb, theta);
+                feat(:,x) = featMaxGradDirecao';
+            else
+                pix = regionprops(imbwLabel,'PixelIdxList');
+                featMaxGradDirecao = featMaxGradDir(pix, bb, theta, rot);
+                feat(:,x) = featMaxGradDirecao';
+            end
+        case 16
+            feat(:,x) = bb(3,:)';
+        case 17
+            feat(:,x) = bb(4,:)';
+        case 18
+            feat(:,x) = (bb(3,:).*bb(4,:))';
+        case 19
+            feat(:,x) = (bb(3,:)/size(im,2))';
+        case 20
+            feat(:,x) = (bb(4,:)/size(im,1))';
+        case 21
+            [l,c]= size(im);
+            feat(:,x) = ((bb(3,:).*bb(4,:))/(l*c))';
+        case 22
+            featWaveEnergy1 = featWaveEnergy(im, '1',bb);
+
+            aux22 = featWaveEnergy1;
+            
+            %Evitando que a faixa de valores fique muito grande e torne os
+            %valores do atributo fiquem mal condicionados durante a
+            %normalização entre 0 e 1 para o classificador svm.
+            if flagFaixaReduzida
+                ind = aux22 > 0.4; %Valor superior
+                aux22(ind) = 0.4;
+                feat(:,x) = aux22;
+            end
+    end
+end

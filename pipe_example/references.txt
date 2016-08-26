@@ -1,0 +1,3 @@
+http://www.python-course.eu/pipes.php
+http://stackoverflow.com/questions/11319939/pipes-between-python-and-c-dont-get-closed
+http://ubuntuforums.org/archive/index.php/t-524072.html

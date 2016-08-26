@@ -1,0 +1,6 @@
+<Files cadastro.html>
+AuthName "Acesso Restrito - Ponto Auto 4x4"
+AuthType Basic
+AuthUserFile /home/pontoauto4x4/public_html/sistema/.htpasswd
+Require user evandro 
+</Files>

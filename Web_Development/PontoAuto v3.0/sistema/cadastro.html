@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>cadastro</title>
+	<link rel="stylesheet" type="text/css" href="./cadastro.css" media="all" />
+	<!--[if IE]>
+	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
+	<![endif]-->
+<!-- SCRIPT DE VALIDACAO DO FORMULARIO-->    
+    <script language="javascript"
+            type="text/javascript">
+//<![CDATA[
+          function valida(form)
+
+      {
+        //marca
+                   if(form.marca.value==""){ 
+                        alert("Faltou preencher o campo MARCA."); 
+                        return false; 
+                                                                        } 
+
+      //modelo
+                        if(form.modelo.value==""){ 
+                        alert("Faltou preencher o campo MODELO."); 
+                        return false; 
+                                                                        } 
+
+      //ano
+                        if(form.ano.value==""){ 
+                        alert("Faltou preencher o campo ANO."); 
+                        return false; 
+                                                                  } 
+
+      //motor
+                  if(form.motor.value==""){ 
+                  alert("Faltou preencher o campo MOTOR."); 
+                  return false; 
+                                                                  }  
+
+      //peca
+                 if(form.peca.value==""){ 
+                  alert("Faltou preencher o campo PEÇA."); 
+                  return false; 
+                                                                }  
+																
+	//codigo
+                 if((form.peca.value=="módulo" && form.codigo.value=="")||(form.peca.value=="modulo" && form.codigo.value=="")||(form.peca.value=="Modulo" && form.codigo.value=="")||(form.peca.value=="Módulo" && form.codigo.value=="")){ 
+                  alert("Faltou preencher o campo CODIGO REFERENTE AO MODULO."); 
+                  return false; 
+                                                                }  
+
+				  
+      //cor lata 
+                if((form.peca.value=='teto'&& form.corlata.value=="")||(form.peca.value=='porta'&& form.corlata.value=="")||(form.peca.value=='capo' && form.corlata.value=="")||(form.peca.value=='paralama' && form.corlata.value=="")||(form.peca.value=='parachoque' && form.corlata.value==""))                      { 
+                alert("Faltou preencher o campo COR LATA."); 
+                return false; 
+                                                                } 
+
+      //nportas
+      //if(form.nportas.value==""){ 
+      //alert("Faltou informar o Numero de Portas."); 
+      //return false; 
+      //}  
+
+      //preço vista
+      if(form.precovista.value==""){ 
+      alert("Faltou preencher o campo PREÇO A VISTA."); 
+      return false; 
+      }  
+	  
+	  //preço prazo
+      if(form.precoprazo.value==""){ 
+      alert("Faltou preencher o campo PREÇO A PRAZO."); 
+      return false; 
+      } 
+	  
+	        //quantidade
+      if(form.quantidade.value==""){ 
+      alert("Faltou preencher o campo QUANTIDADE."); 
+      return false; 
+      } 
+	  
+	       //foto
+      if(form.foto.value==""){ 
+      alert("Você não escolheu nenhuma foto, se não tive foto do produto por favor use a imagem referência!"); 
+      return false; 
+      }
+
+      return true; 
+      } 
+      //]]>
+      </script>
+    
+    
+    
+</head>
+
+<body>
+
+<div id="background">
+</div>
+<div id="Div">
+</div>
+<div class="Txt_SISTEMA">
+	<p></p>
+</div>
+<img src="cadastro_images/topo1.jpg" id="topo1" alt="" />
+<img src="cadastro_images/topo2.jpg" id="topo2" alt="" />
+<img src="cadastro_images/topo3.jpg" id="topo3" alt="" />
+<a href="http://www.facebook.com" target="_new"><img src="cadastro_images/face_in.jpg" id="face_in" alt="facein" /></a>
+<img src="cadastro_images/afterface.jpg" id="afterface" alt="" />
+<div id="conteudo_main">
+<form action="cadastro.php"
+            enctype="multipart/form-data"
+            method="post"     
+            onsubmit="return valida(this)">
+            <table width="200" border="0" cellspacing="2" cellpadding="0" align="center">
+  <tr>
+    <td>       <!--marca-->
+         <p align="center"> <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Marca</font> <br />
+        <input type="text"
+               name="marca"
+               size="20"
+               maxlength="40"
+               value="" /> </p></td>
+    <td>               
+         <!--modelo-->
+         <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Modelo</font> <br />
+         <input type="text"
+               name="modelo"
+               size="20"
+               maxlenght="40" /></p></td>
+  </tr>
+  <tr>
+    <td> <!--ano-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Ano</font> <br />
+         <input type="text"
+               name="ano"
+               size="20"
+               maxlenght="40" /></p></td>
+    <td>
+         <!--motor-->
+         <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Motor</font> <br />
+         <input type="text"
+               name="motor"
+               size="20"
+               maxlenght="40" /></p></td>
+  </tr>
+  <tr>
+    <td>         <!--peca-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Peça</font> <br />
+         <input type="text"
+               name="peca"
+               size="20"
+               maxlenght="40" /></p></td>
+    <td>               <!--codigo-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Código</font> <br />
+         <input type="text"
+               name="codigo"
+               size="20"
+               maxlenght="40" /></p></td>
+  </tr>
+  <tr>
+    <td>         <!--cor da lata-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Cor Lata</font><br />
+         <input type="text"
+               name="corlata"
+               size="20"
+               maxlenght="40" /></p></td>
+    <td>         <!--nÂº de portas-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Nº de Portas</font> <br />
+         <input type="text"
+               name="nportas"
+               size="20"
+               maxlenght="40" 
+               value=""/></p></td>
+  </tr>
+  <tr>
+    <td>    <!--preço a vista-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Preço &agrave; Vista</font> <br />
+         <input type="text"
+               name="precovista"
+               size="20"
+               maxlenght="40" value=""/></p></td>
+    <td>
+                        <!--preço a prazo-->
+                        <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Preço &agrave; Prazo</font> <br />
+         <input type="text"
+               name="precoprazo"
+               size="20"
+               maxlenght="40" value=""/></p></td>
+  </tr>
+
+</table>
+            
+         
+ <!--quantidade-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Quantidade</font> <br />
+         <input type="text"
+               name="quantidade"
+               size="20"
+               maxlenght="40" value=""/></p>
+         
+            
+ <!--comentario-->
+    <p align="center">
+          <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Comentário</font> <br />
+         <input type="text"
+               name="comentario"
+               size="50"
+               maxlenght="300" value=""/></p>
+               
+    <!--a partir daqui = teste -->  
+      
+   <p align="center">    <font color="#333333"   face="Verdana, Geneva, sans-serif">Enviar Imagem </font>
+   
+    </p><p align="center">
+            <input type="file" name="foto" size="50" value="" /><br /><br />       
+<input type="submit"
+               name="submit"
+               value="ENVIAR" /><!-- botão 'enviar' -->
+         
+         <input type="reset"
+               name="reset"
+               value="RESET" /><!-- botão 'limpar' -->
+ </p></form>
+</div>
+<img src="cadastro_images/after_conteudo.jpg" id="after_conteudo" alt="" />
+<a href="http://twitter.com" target="_new"><img src="cadastro_images/twiitin.jpg" id="twiitin" alt="twitterin" /></a>
+<img src="cadastro_images/pre_main.jpg" id="pre_main" alt="" />
+<img src="cadastro_images/twit_down.jpg" id="twit_down" alt="" />
+<img src="cadastro_images/down_conteudo.jpg" id="down_conteudo" alt="" />
+<img src="cadastro_images/brands.jpg" id="brands" alt="" />
+<img src="cadastro_images/footer.jpg" id="footer" alt="" />
+</body>
+</html>

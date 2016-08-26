@@ -1,0 +1,20 @@
+<Files sistema.html>
+AuthName "Acesso Restrito - Ponto Auto 4x4"
+AuthType Basic
+AuthUserFile /home/pontoauto4x4/public_html/sistema/.htpasswd
+Require user evandro 
+</Files>
+
+<Files cadastro.html>
+AuthName "Acesso Restrito - Ponto Auto 4x4"
+AuthType Basic
+AuthUserFile /home/pontoauto4x4/public_html/sistema/.htpasswd
+Require user evandro 
+</Files>
+
+<Files alt_estoque.html>
+AuthName "Acesso Restrito - Ponto Auto 4x4"
+AuthType Basic
+AuthUserFile /home/pontoauto4x4/public_html/sistema/.htpasswd
+Require user evandro 
+</Files>

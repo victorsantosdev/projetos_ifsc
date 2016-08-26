@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Fale Conosco</title>
+	<link rel="stylesheet" type="text/css" href="./email.css" media="all" />
+	<!--[if IE]>
+	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
+	<![endif]-->
+ <script language="javascript"
+            type="text/javascript">
+//<![CDATA[
+          function valida(form)
+
+      {
+                             
+
+      //nome
+                        if(form.nome.value==""){ 
+                        alert("Faltou preencher o campo NOME."); 
+                        return false; 
+                                                                        } 
+
+      //email
+                  if(form.email.value==""){ 
+                  alert("Faltou preencher o campo EMAIL."); 
+                  return false; 
+                                                                  }  
+
+      //assunto
+                  if(form.assunto.value==""){ 
+                  alert("Faltou preencher o campo ASSUNTO."); 
+                  return false; 
+                                                                  } 
+
+      //mensagem
+                  if(form.mensagem.value==""){ 
+                  alert("Faltou preencher o campo MENSAGEM."); 
+                  return false; 
+                                                                  } 
+
+      return true; 
+      } 
+      //]]>
+      </script>
+     
+    
+</head>
+
+<body>
+
+<div id="background">
+</div>
+<div id="Div">
+</div>
+<div class="fale_conosco">
+	
+		<p class="lastNode">Fale-Conosco
+	</p>
+</div>
+<img src="email_images/topo1.jpg" id="topo1" alt="" />
+<img src="email_images/topo2.jpg" id="topo2" alt="" />
+<img src="email_images/topo3.jpg" id="topo3" alt="" />
+<img src="email_images/face_in.jpg" id="face_in" alt="" />
+<img src="email_images/afterface.jpg" id="afterface" alt="" />
+<div id="conteudo_main">
+<form action="email.php"
+            enctype="multipart/form-data"
+            method="post"     
+            onsubmit="return valida(this)">
+            
+<table width="200" border="0" cellspacing="4" cellpadding="0" align="center">
+  <tr>
+    <td><font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Nome</font></td>
+    <td>        <input type="text"
+               name="nome"
+               size="80"
+               maxlength="40"
+               value="" /></td>
+  </tr>
+  <tr>
+    <td> <font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Telefone</font></td>
+    <td>        <input type="text"
+               name="telefone"
+               size="80"
+               maxlenght="40" /></td>
+  </tr>
+  <tr>
+    <td><font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Email</font></td>
+    <td> <input type="text"
+               name="email"
+               size="80"
+               maxlenght="40" /></td>
+  </tr>
+  <tr>
+    <td><font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Assunto</font></td>
+    <td><input type="text"
+               name="assunto"
+               size="80"
+               maxlenght="100" /></td>
+  </tr>
+  <tr>
+    <td><font color="#333333" 
+               face="Verdana, Geneva, sans-serif" size="+1">Mensagem</font></td>
+    <td> <textarea name="mensagem" rows="12" id="mensagem" cols="80"></textarea>
+<br />
+  </tr>
+</table>  
+<br />                 
+       <!--Código de Segurança-->
+<p align="center">
+    <font color="#222222"
+               face="Verdana, Geneva, sans-serif" size="+1">Digite o c&oacute;digo de seguran&ccedil;a que voc&ecirc; v&ecirc; na imagem.</font> 
+    <br />
+    <input type="text" name="captcha_txt" />&nbsp;<img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA" />   
+    </p>
+<br />               
+<p align="center">                
+<input type="submit"
+               name="submit"
+               value="ENVIAR" /><!-- botão 'enviar' -->
+         
+         <input type="reset"
+               name="reset"
+               value="RESET" /><!-- botão 'limpar' --></p>
+ </form>
+
+</div>
+<img src="email_images/after_conteudo.jpg" id="after_conteudo" alt="" />
+<img src="email_images/twiitin.jpg" id="twiitin" alt="" />
+<img src="email_images/pre_main.jpg" id="pre_main" alt="" />
+<img src="email_images/twit_down.jpg" id="twit_down" alt="" />
+<img src="email_images/down_conteudo.jpg" id="down_conteudo" alt="" />
+<img src="email_images/brands.jpg" id="brands" alt="" />
+<img src="email_images/footer.jpg" id="footer" alt="" />
+</body>
+</html>
